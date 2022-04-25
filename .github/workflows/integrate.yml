@@ -8,3 +8,12 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
+      - name: Build the stack
+        run: docker-compose up -d
+      - name: List container
+        run: docker-compose ps
+      - name: wget
+        uses: wei/wget@v1
+        with:
+          args: -O home.html http://localhost:8080
+
