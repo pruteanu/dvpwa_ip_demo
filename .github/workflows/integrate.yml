@@ -1,11 +1,10 @@
-name: Demo CI
-
+name: CI Basic
 on:
-  - pull_request:
-      branches: [ master ]
+  pull_request:
+    branches: [master]
 
 jobs:
   test_pull_request:
-      runs-on: ubuntu-latest
-      steps:
-        - uses: actions/checkout@v2
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
