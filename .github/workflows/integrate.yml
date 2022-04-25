@@ -12,8 +12,15 @@ jobs:
         run: docker-compose up -d
       - name: List container
         run: docker-compose ps
+      - name: uname
+        run: uname -a
+      - name: Ping localhost
+        run: cat /etc/lsb-release
+      - name: Netsat
+        run: netstat -plnt
       - name: wget
         uses: wei/wget@v1
         with:
           args: -O home.html http://localhost:8080
+
 
