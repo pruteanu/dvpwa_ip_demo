@@ -33,11 +33,9 @@ jobs:
       - name: Netstat
         run: netstat -plnt
       - name: Set docker container id
-        env:
-          DOCKER_CONTAINER_ID: $(docker ps -a | grep "dvpwa_ip_demo_sqli" | cut -d " " -f1)
+        run:  echo "DOCKER_CONTAINER_ID=$(docker ps -a | grep "dvpwa_ip_demo_sqli" | cut -d " " -f1)" >> $GITHUB_ENV
       - name: Set webapp IP
-        env:
-          DOCKER_WEB_IP: $(docker inspect -f '{{range .NetworkSettings.Networks}}{{.IPAddress}}{{end}}' $DOCKER_CONTAINER_ID )
+        run: echo "DOCKER_WEB_IP=$(docker inspect -f '{{range .NetworkSettings.Networks}}{{.IPAddress}}{{end}}' $DOCKER_CONTAINER_ID )" >> $GITHUB_ENV
       - name: wget ip
         uses: wei/wget@v1
         with:
