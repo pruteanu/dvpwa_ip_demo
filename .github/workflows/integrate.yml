@@ -33,12 +33,10 @@ jobs:
       - name: Netstat
         run: netstat -plnt
       - name: Set docker container id
-        run: docker ps -a | grep "dvpwa_ip_demo_sqli" | cut -d " " -f1 >> $DOCKER_CONTAINER_ID
+        run: DOCKER_CONTAINER_ID=$(docker ps -a | grep "dvpwa_ip_demo_sqli" | cut -d " " -f1)
       - name: Set webapp IP
-        run: docker inspect -f '{{range .NetworkSettings.Networks}}{{.IPAddress}}{{end}}' $DOCKER_CONTAINER_ID >> $DOCKER_WEB_IP
-      - name: Set webapp IP
-        run: docker inspect -f '{{range .NetworkSettings.Networks}}{{.IPAddress}}{{end}}' $DOCKER_CONTAINER_ID >> $DOCKER_WEB_IP
-      - name: wget localhost
+        run: DOCKER_WEB_IP=$(docker inspect -f '{{range .NetworkSettings.Networks}}{{.IPAddress}}{{end}}' $DOCKER_CONTAINER_ID )
+      - name: wget ip
         uses: wei/wget@v1
         with:
           args: -O home.html http://$DOCKER_WEB_IP:8080
