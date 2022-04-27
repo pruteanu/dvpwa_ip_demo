@@ -14,11 +14,21 @@ jobs:
         run: docker-compose ps
       - name: uname
         run: uname -a
-      - name: Ping localhost
+      - name: ping localhost
+        run: ping localhost
+      - name: ping 127.0.0.1
+        run: ping 127.0.0.1
+      - name: ping 127.0.0.1
+        run: tracert 127.0.0.1
+      - name: cat release
         run: cat /etc/lsb-release
       - name: Netsat
         run: netstat -plnt
-      - name: wget
+      - name: wget 127
+        uses: wei/wget@v1
+        with:
+          args: -O home.html http://127.0.0.1:8080
+      - name: wget localhost
         uses: wei/wget@v1
         with:
           args: -O home.html http://localhost:8080
