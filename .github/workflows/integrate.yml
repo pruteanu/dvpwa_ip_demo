@@ -15,9 +15,9 @@ jobs:
       - name: uname
         run: uname -a
       - name: ping localhost
-        run: ping -n 4 localhost
+        run: ping -c 4 localhost
       - name: ping 127.0.0.1
-        run: ping -n 4 127.0.0.1
+        run: ping -c 4 127.0.0.1
       - name: cat release
         run: cat /etc/lsb-release
       - name: Netstat
