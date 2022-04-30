@@ -32,10 +32,8 @@ jobs:
 #        uses: wei/wget@v1
 #        with:
 #          args: -O home.html http://localhost:8080
-      - name: Netstat
-        run: netstat -plnt
-      - name: telnet
-        run: telnet 127.0.0.1 8080
+#      - name: telnet
+#        run: telnet 127.0.0.1 8080
 #      - name: Set docker container id
 #        run:  echo "DOCKER_CONTAINER_ID=$(docker ps -a | grep "dvpwa_ip_demo_sqli" | cut -d " " -f1)" >> $GITHUB_ENV
 #      - name: Set webapp IP
@@ -44,11 +42,15 @@ jobs:
         run: ifconfig
 #      - name: docker ps
 #        run: docker ps -a
-      - name: Sleep for 90 seconds
-        run: sleep 90s
-        shell: bash
+#      - name: Sleep for 90 seconds
+#        run: sleep 90s
+#        shell: bash
 #      - name: docker ps
 #        run: docker ps -a
+      - name: curl
+        uses: wei/curl@master
+        with:
+          args: http://localhost:8080
       - name: wget ip
         uses: wei/wget@v1
         with:
