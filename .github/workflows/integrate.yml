@@ -50,10 +50,8 @@ jobs:
 #      - name: docker ps
 #        run: docker ps -a
       - name: curl
-        uses: wei/curl@master
-        with:
-          args: http://localhost:8080
-      - name: wget ip
-        uses: wei/wget@v1
-        with:
-          args: http://localhost:8080
+        run: curl http://localhost:8080
+#      - name: wget ip
+#        uses: wei/wget@v1
+#        with:
+#          args: http://localhost:8080
