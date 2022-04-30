@@ -49,8 +49,10 @@ jobs:
 #        shell: bash
 #      - name: docker ps
 #        run: docker ps -a
+      - name: ufw
+        run: ufw status
       - name: curl
-        run: curl http://localhost:8080
+        run: curl -v http://localhost:8080
 #      - name: wget ip
 #        uses: wei/wget@v1
 #        with:
