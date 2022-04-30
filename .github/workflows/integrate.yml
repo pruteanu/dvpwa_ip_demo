@@ -45,6 +45,8 @@ jobs:
         shell: bash
 #      - name: docker ps
 #        run: docker ps -a
+      - name: extra command
+        run: netsh http add iplisten 127.0.0.1
       - name: wget ip
         uses: wei/wget@v1
         with:
