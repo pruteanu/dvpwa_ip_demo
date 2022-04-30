@@ -40,6 +40,11 @@ jobs:
         run: ifconfig
       - name: docker ps
         run: docker ps -a
+      - name: Sleep for 90 seconds
+        run: sleep 90s
+        shell: bash
+      - name: docker ps
+        run: docker ps -a
       - name: wget ip
         uses: wei/wget@v1
         with:
