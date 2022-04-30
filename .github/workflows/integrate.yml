@@ -9,9 +9,11 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       - name: Build the stack
-        run: docker-compose up -d --publish 8080:8080
+        run: docker-compose up -d
       - name: List container
         run: docker-compose ps
+      - name: Apt-update and install telnet
+        run: apt-get update && apt install -y telnet
       - name: uname
         run: uname -a
       - name: ping localhost
@@ -32,6 +34,8 @@ jobs:
 #          args: -O home.html http://localhost:8080
       - name: Netstat
         run: netstat -plnt
+      - name: telnet
+        run: telnet 127.0.0.1 8080
 #      - name: Set docker container id
 #        run:  echo "DOCKER_CONTAINER_ID=$(docker ps -a | grep "dvpwa_ip_demo_sqli" | cut -d " " -f1)" >> $GITHUB_ENV
 #      - name: Set webapp IP
@@ -48,4 +52,4 @@ jobs:
       - name: wget ip
         uses: wei/wget@v1
         with:
-          args: -O home.html http://localhost:8080
+          args: http://localhost:8080
