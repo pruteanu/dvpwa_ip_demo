@@ -50,7 +50,7 @@ jobs:
 #      - name: docker ps
 #        run: docker ps -a
       - name: ufw
-        run: ufw status
+        run: sudo ufw status
       - name: curl
         run: curl -v http://localhost:8080
 #      - name: wget ip
