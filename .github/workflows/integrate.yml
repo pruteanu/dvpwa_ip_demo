@@ -8,12 +8,14 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
-      - name: Build the stack
-        run: docker-compose up -d
-      - name: List container
-        run: docker-compose ps
-      - name: Apt-update and install telnet
-        run: apt-get update && apt install -y telnet
+      - name: Verify action
+        uses: ./
+        with:
+          start:  docker-compose up -d
+          wait-on: 'http://localhost:8080'
+          wait-on-timeout: 110
+      - name: whoami
+        run: whoami
       - name: uname
         run: uname -a
       - name: ping localhost
