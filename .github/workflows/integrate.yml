@@ -53,10 +53,13 @@ jobs:
         run: sudo ufw status
       - name: curl
         run: curl -v http://localhost:8080
-      - name: apt-get update
-        run: sudo apt-get update
-      - name: apt-get install w3af
-        run: sudo apt-get install -y w3af
+      - name: install it from source
+        run: |
+                git clone https://github.com/andresriancho/w3af.git
+                cd w3af/
+                ./w3af_console
+                . /tmp/w3af_dependency_install.sh
+                ./w3af_console
 #      - name: wget ip
 #        uses: wei/wget@v1
 #        with:
