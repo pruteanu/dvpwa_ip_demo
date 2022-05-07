@@ -61,18 +61,9 @@ jobs:
           args: https://github.com/Arachni/arachni/releases/download/v1.6.1.1/arachni-1.6.1.1-0.6.1.1-linux-x86_64.tar.gz
       - name: Install Arachni
         run: |
-              echo "1-PWd is $pwd"
-              echo "==============================================="
-              ls -al
-              echo "***********************************************"
+              echo "1-PWd is:"
+              pwd
               tar -xvf arachni-1.6.1.1-0.6.1.1-linux-x86_64.tar.gz
-              ll ~/arachni*
-              ll ~/arachni*/bin
-              cd ~/arachni*/bin
-              echo "PWd is $pwd"
-              echo "==============================================="
-              ls -al
-              echo "***********************************************"
               ./arachni --plugin=login_script:script=~/login.rb \
               --checks=* \
               --scope-exclude-pattern='\/dvwa\/logout\.php' \
