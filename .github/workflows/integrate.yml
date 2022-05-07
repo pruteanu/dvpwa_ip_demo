@@ -53,6 +53,10 @@ jobs:
         run: sudo ufw status
       - name: curl
         run: curl -v http://localhost:8080
+      - name: apt-get update
+        run: apt-get update
+      - name: apt-get install w3af
+        run: apt-get install -y w3af
 #      - name: wget ip
 #        uses: wei/wget@v1
 #        with:
