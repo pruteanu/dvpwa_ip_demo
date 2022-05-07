@@ -53,12 +53,17 @@ jobs:
         run: sudo ufw status
       - name: curl
         run: curl -v http://localhost:8080
-      - name: install it from source
+      - name: clone and generate dependency_install script
+        continue-on-error: true
         run: |
                 git clone https://github.com/andresriancho/w3af.git
                 cd w3af/
-                . /tmp/w3af_dependency_install.sh
                 ./w3af_console
+      - name: run the dependency_install script
+        run: |
+            . /tmp/w3af_dependency_install.sh
+            ./w3af_console
+
 #      - name: wget ip
 #        uses: wei/wget@v1
 #        with:
