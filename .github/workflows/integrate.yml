@@ -64,15 +64,12 @@ jobs:
               tar -xvf arachni-1.6.1.1-0.6.1.1-linux-x86_64.tar.gz > /dev/null
               cd arachni-1.6.1.1-0.6.1.1/bin
               CURR_HOSTNAME=$(cat /etc/hostname)
-              ./arachni --plugin=login_script:script=~/login.rb \
-              --checks=* \
-              --scope-exclude-pattern='\/dvwa\/logout\.php' \
-              --scope-exclude-pattern='\/dvwa\/vulnerabilities\/csrf\/' \
-              --scope-exclude-pattern='\/dvwa\/security\.php' \
-              --scope-exclude-pattern='\/dvwa\/setup\.php' \
-              --http-cookie-string="security=low" \
-              --report-save-path '~/DVWA.afr' \
-              http://${CURR_HOSTNAME}/dvwa/
+              ./arachni –mods=,-xss_* --report-save-path '~/DVWA.afr' http://${CURR_HOSTNAME}/dvwa/
               echo "Scan finished, report is printed below"
               cat ~/DVWA.afr
+      - name: Archive report artifacts
+        uses: actions/upload-artifact@v3
+        with:
+          name: arachni localhost
+          path: ~/DVWA.afr
 
