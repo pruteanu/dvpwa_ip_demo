@@ -68,7 +68,8 @@ jobs:
               CURR_HOSTNAME=$(cat /etc/hostname)
               mkdir "./reports"
               ./bin/arachni http://${CURR_HOSTNAME}:8080/courses/1/review  --checks 'xss*' --report-save-path './reports' 2>&1 > ./reports/arachni_scan_stdout_stderr.txt
-              scan_status=$(grep -oP "With issues: ([0-9]*)" test.txt | cut -d: -f2 | xargs)
+              scan_status=$(grep -oP "With issues: ([0-9]*)" ./reports/arachni_scan_stdout_stderr.txt | cut -d: -f2 | xargs)
+              echo "Based on the output of the arachni scan, the identified status is: '$scan_status'!"
               exit $scan_status
       - name: Archive report artifacts
         uses: actions/upload-artifact@v3
