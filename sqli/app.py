@@ -30,9 +30,14 @@ def init(argv):
     )
     app['config'] = config
 
+    # Escape option
+    InitialInsecureValue=False
+    SecuredValue=True
+    currentEscapeValue=SecuredValue
+
     setup_jinja(app, loader=PackageLoader('sqli', 'templates'),
                 context_processors=[csrf_processor, auth_user_processor],
-                autoescape=False)
+                autoescape=currentEscapeValue)
     setup_database(app)
     setup_redis(app)
     setup_routes(app)
