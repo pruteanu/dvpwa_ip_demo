@@ -67,7 +67,7 @@ jobs:
               mkdir "./reports"
               ./bin/arachni http://${CURR_HOSTNAME}:8080/courses/1/review  --checks 'xss*' --report-save-path './reports' 2>&1 > ./reports/arachni_scan_stdout_stderr.txt
               scan_status=$(grep -oP "With issues: ([0-9]*)" ./reports/arachni_scan_stdout_stderr.txt | cut -d: -f2 | xargs)
-              grep -A1 -B1 "With issues: ([0-9]*)" ./reports/arachni_scan_stdout_stderr.txt
+              grep -A1 -B1 "With issues" ./reports/arachni_scan_stdout_stderr.txt
               echo "Based on the above summarised output of the arachni scan, the identified status is: '$scan_status'! For more details, please open the .txt file in the job artefacts..."
               exit $scan_status
       - name: Archive report artifacts
