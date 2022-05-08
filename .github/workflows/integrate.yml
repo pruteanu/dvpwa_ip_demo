@@ -62,14 +62,17 @@ jobs:
       - name: Install Arachni
         run: |
               tar -xvf arachni-1.6.1.1-0.6.1.1-linux-x86_64.tar.gz > /dev/null
-              cd arachni-1.6.1.1-0.6.1.1/bin
+              pwd
+              echo "Current working dir is ^"
+              cd arachni-1.6.1.1-0.6.1.1/
               CURR_HOSTNAME=$(cat /etc/hostname)
-              ./arachni http://${CURR_HOSTNAME}:8080  --checks 'xss*' --report-save-path '.'
+              mkdir "./reports"
+              ./bin/arachni http://${CURR_HOSTNAME}:8080/courses/1/review  --checks 'xss*' --report-save-path './reports'
               echo "Scan finished, report PATH is printed below"
               ls -al .
       - name: Archive report artifacts
         uses: actions/upload-artifact@v3
         with:
           name: arachni localhost
-          path: ~/DVWA.afr
+          path: arachni-1.6.1.1-0.6.1.1/reports
 
