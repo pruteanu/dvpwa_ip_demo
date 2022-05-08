@@ -63,7 +63,7 @@ jobs:
         run: |
               tar -xvf arachni-1.6.1.1-0.6.1.1-linux-x86_64.tar.gz > /dev/null
               ls -al
-              cd arachni-1.6.1.1-0.6.1.1
+              cd arachni-1.6.1.1-0.6.1.1/bin
               pwd
               ls -al
               ./arachni --plugin=login_script:script=~/login.rb \
